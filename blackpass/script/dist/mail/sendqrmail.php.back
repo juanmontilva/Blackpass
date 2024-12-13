@@ -1,0 +1,699 @@
+<?php
+	//Import PHPMailer classes into the global namespace
+//These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+//Load Composer's autoloader
+require 'vendor/autoload.php';
+function enviarmail($w,$x,$y,$z){
+
+
+//Create an instance; passing `true` enables exceptions
+$mail = new PHPMailer(true);
+$html = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+	<!--[if gte mso 9]>
+	<xml>
+		<o:OfficeDocumentSettings>
+		<o:AllowPNG/>
+		<o:PixelsPerInch>96</o:PixelsPerInch>
+		</o:OfficeDocumentSettings>
+	</xml>
+	<![endif]-->
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="format-detection" content="date=no" />
+	<meta name="format-detection" content="address=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="x-apple-disable-message-reformatting" />
+    <!--[if !mso]><!-->
+	<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Slabo+27px" rel="stylesheet" />
+    <!--<![endif]-->
+	<title>Black Pass VIP</title>
+	<!--[if gte mso 9]>
+	<style type="text/css" media="all">
+		sup { font-size: 100% !important; }
+	</style>
+	<![endif]-->
+	
+
+	<style type="text/css" media="screen">
+		/* Linked Styles */
+		body { background:#292929; padding:0 !important; margin:0 !important; display:block !important; -webkit-text-size-adjust:none; background-image:url(images/t3_pattern.jpg); background-repeat:no-repeat repeat-y; background-position:0 0 }
+		a { color:#ffffff; text-decoration:none }
+		p { padding:0 !important; margin:0 !important } 
+		img { -ms-interpolation-mode: bicubic; /* Allow smoother rendering of resized image in Internet Explorer */ }
+		.mcnPreviewText { display: none !important; }
+
+				
+		/* Mobile styles */
+		@media only screen and (max-device-width: 480px), only screen and (max-width: 480px) {
+			.mobile-shell { width: 100% !important; min-width: 100% !important; }
+			.text-header,
+			.m-center { text-align: center !important; }
+			.holder { padding: 0 10px !important; }
+			.text-nav { font-size: 10px !important; }
+			.center { margin: 0 auto !important; }
+
+			.td { width: 100% !important; min-width: 100% !important; }
+
+			.m-br-15 { height: 15px !important; }
+			.bg { height: auto !important; } 
+			.h0 { height: 0px !important; }
+
+			.m-td,
+			.m-hide { display: none !important; width: 0 !important; height: 0 !important; font-size: 0 !important; line-height: 0 !important; min-height: 0 !important; }
+			.m-block { display: block !important; }
+
+			.p30-15 { padding: 30px 15px !important; }
+			.p15-15 { padding: 15px 15px !important; }
+			.p30-0 { padding: 30px 0px !important; }
+
+			.fluid-img img { width: 100% !important; max-width: 100% !important; height: auto !important; }
+
+			.column,
+			.column-top,
+			.column-dir,
+			.column-empty,
+			.column-empty2,
+			.column-empty3,
+			.column-bottom,
+			.column-dir-top,
+			.column-dir-bottom { float: left !important; width: 100% !important; display: block !important; }
+
+			.column-empty { padding-bottom: 10px !important; }
+			.column-empty2 { padding-bottom: 25px !important; }
+			.column-empty3 { padding-bottom: 45px !important; }
+
+			.content-spacing { width: 15px !important; }
+			.content-spacing2 { width: 25px !important; }
+		}
+	</style>
+</head>
+<body class="body" style="background:#292929; padding:0 !important; margin:0 !important; display:block !important; -webkit-text-size-adjust:none; background-image:url(images/t3_pattern.jpg); background-repeat:no-repeat repeat-y; background-position:0 0;">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-image: url(http://192.169.156.225/hcs/images/t3_pattern.jpg); background-repeat: no-repeat repeat-y; background-position: 0 0;" align="center"> 
+		<tr>
+			<td background="images/t3_pattern.jpg" align="center" valign="top" style="background-image: url(http://192.169.156.225/hcs/images/t3_pattern.jpg); background-repeat: no-repeat repeat-y; background-position: 0 0;"> 
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td align="center" style="padding: 60px 0px;">
+							<table width="650" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
+								<tr>
+									<td class="td" style="width:650px; min-width:650px; font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+										<!-- Header -->
+										<table width="100%" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left;"><img src="http://192.169.156.225/hcs/images/section_black_top.png" width="650" height="24" editable="true" border="0" alt="" /></td>
+											</tr>
+											<tr>
+												<td class="p30-15" bgcolor="#000000" style="padding: 20px 30px;">
+													<table width="100%" border="0" cellspacing="0" cellpadding="0">
+														<tr>
+															
+															<th class="column-empty" width="1" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;"></th>
+															
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+										<!-- END Header -->
+										
+										<repeater>
+											<!-- Hero Image -->
+											<layout label="Hero Image">
+												<table width="100%" border="0" cellspacing="0" cellpadding="0">
+													<tr>
+														<td class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left;"><img src="http://192.169.156.225/hcs/header-habitaciones.jpg" width="650" height="200" editable="true" border="0" alt="" /></td>
+													</tr>
+												</table>
+											</layout>
+											<!-- END Hero Image -->
+
+											<!-- Article 1 -->
+											
+										<!-- Footer -->
+										<table width="100%" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left;"><img src="http://192.169.156.225/hcs/images/section_black_top.png" width="650" height="24" editable="true" border="0" alt="" /></td>
+											</tr>
+											<tr>
+												<td style="padding: 70px 40px 40px 40px;" class="p30-15" bgcolor="#000000">
+													<table border="0" cellspacing="0" cellpadding="0">
+
+														
+														<tr>
+															<td class="fluid-img" bgcolor="#262626" style="font-size:0pt; line-height:0pt; text-align:left;"><img src="http://192.169.156.225/hcs/images/t3_separator2.jpg" width="571" height="2" border="0" alt="" /></td>
+														</tr>
+														<tr>
+															<td class="p30-0" style="padding: 40px 0px 20px 0px;"></td>
+														</tr>
+														<tr>
+															<td align="center" style="padding-bottom: 30px;">
+																<table border="0" cellspacing="0" cellpadding="0">
+																	<tr>
+																		<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="#" target="_blank"><img src="http://192.169.156.225/hcs/images/t3_ico_facebook.jpg" width="34" height="34" editable="true" border="0" alt="" /></a></td>
+																		<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="#" target="_blank"><img src="http://192.169.156.225/hcs/images/t3_ico_twitter.jpg" width="34" height="34" editable="true" border="0" alt="" /></a></td>
+																		<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="#" target="_blank"><img src="http://192.169.156.225/hcs/images/t3_ico_instagram.jpg" width="34" height="34" editable="true" border="0" alt="" /></a></td>
+																		<td class="img" width="34" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="#" target="_blank"><img src="http://192.169.156.225/hcs/images/t3_ico_linkedin.jpg" width="34" height="34" editable="true" border="0" alt="" /></a></td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+														
+												</td>
+											</tr>
+											<tr>
+												<td class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left;"><img src="http://192.169.156.225/hcs/images/container_bottom.png" width="650" height="20" editable="true" border="0" alt="" /></td>
+											</tr>
+											<tr>
+												<td class="text-footer p30-15" style="padding: 20px 40px; color:#777777; font-family:"Slabo 27px", Georgia, serif; font-size:15px; line-height:26px; text-align:center; text-transform:uppercase;"><unsubscribe class="link4" style="color:#666666; text-decoration:none;"><span class="link4-u" style="color:#666666; text-decoration:underline;">Unsubscribe</span> from this mailing list.</unsubscribe> </td>
+											</tr>
+										</table>
+										<!-- END Footer -->
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>';
+try {
+    //Server settings
+    //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+    $mail->isSMTP();                                            //Send using SMTP
+    $mail->Host       = 'smtpout.secureserver.net';                     //Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+    $mail->Username   = 'hcs@itolabtech.com';                     //SMTP username
+    $mail->Password   = 'Thomas2284.';                               //SMTP password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+    //Recipients
+    $mail->setFrom('hcs@itolabtech.com', 'Black Pass VIP');
+    $mail->addAddress($w, $x);     //Add a recipient
+   // $mail->addAddress('ellen@example.com');               //Name is optional
+    $mail->addReplyTo('hcs@itolabtech.com', 'Black Pass VIP');
+    //$mail->addCC('cc@example.com');
+    //$mail->addBCC('bcc@example.com');
+
+    //Attachments
+    $mail->addAttachment('files/temp/'.$z);         //Add attachments
+    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+    //Content
+    $mail->isHTML(true);                                  //Set email format to HTML
+    $mail->Subject = 'Datos Membresia Black Pass VIP';
+    $mail->Body    = $html;
+    //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+    $mail->send();
+    return array(1,"OK");
+} catch (Exception $e) {
+    return array(0,$mail->ErrorInfo);
+}
+}
+
+function enviarmail2($w,$x,$y){
+
+
+//Create an instance; passing `true` enables exceptions
+$mail = new PHPMailer(true);
+$html = "<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge' />
+<style type='text/css'>
+    /* CLIENT-SPECIFIC STYLES */
+    #outlook a{padding:0;} /* Force Outlook to provide a 'view in browser' message */
+    .ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Hotmail to display emails at full width */
+    .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;} /* Force Hotmail to display normal line spacing */
+    body, table, td, a{-webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;} /* Prevent WebKit and Windows mobile changing default text sizes */
+    table, td{mso-table-lspace:0pt; mso-table-rspace:0pt;} /* Remove spacing between tables in Outlook 2007 and up */
+    img{-ms-interpolation-mode:bicubic;} /* Allow smoother rendering of resized image in Internet Explorer */
+
+    /* RESET STYLES */
+    body{margin:0; padding:0;}
+    img{border:0; height:auto; line-height:100%; outline:none; text-decoration:none;}
+    table{border-collapse:collapse !important;}
+    body{height:100% !important; margin:0; padding:0; width:100% !important;}
+
+    /* iOS BLUE LINKS */
+    .appleBody a {color:#68440a; text-decoration: none;}
+    .appleFooter a {color:#999999; text-decoration: none;}
+
+    /* MOBILE STYLES */
+    @media screen and (max-width: 525px) {
+
+        /* ALLOWS FOR FLUID TABLES */
+        table[class='wrapper']{
+          width:100% !important;
+        }
+
+        /* ADJUSTS LAYOUT OF LOGO IMAGE */
+        td[class='logo']{
+          text-align: left;
+          padding: 20px 0 20px 0 !important;
+        }
+
+        td[class='logo'] img{
+          margin:0 auto!important;
+        }
+
+        /* USE THESE CLASSES TO HIDE CONTENT ON MOBILE */
+        td[class='mobile-hide']{
+          display:none;}
+
+        img[class='mobile-hide']{
+          display: none !important;
+        }
+
+        img[class='img-max']{
+          max-width: 100% !important;
+          width: 100% !important;
+          height:auto !important;
+        }
+
+        /* FULL-WIDTH TABLES */
+        table[class='responsive-table']{
+          width:100%!important;
+        }
+
+        /* UTILITY CLASSES FOR ADJUSTING PADDING ON MOBILE */
+        td[class='padding']{
+          padding: 10px 5% 15px 5% !important;
+        }
+
+        td[class='padding-copy']{
+          padding: 10px 5% 10px 5% !important;
+          text-align: center;
+        }
+
+        td[class='padding-meta']{
+          padding: 30px 5% 0px 5% !important;
+          text-align: center;
+        }
+
+        td[class='no-pad']{
+          padding: 0 0 20px 0 !important;
+        }
+
+        td[class='no-padding']{
+          padding: 0 !important;
+        }
+
+        td[class='section-padding']{
+          padding: 50px 15px 50px 15px !important;
+        }
+
+        td[class='section-padding-bottom-image']{
+          padding: 50px 15px 0 15px !important;
+        }
+
+        /* ADJUST BUTTONS ON MOBILE */
+        td[class='mobile-wrapper']{
+            padding: 10px 5% 15px 5% !important;
+        }
+
+        table[class='mobile-button-container']{
+            margin:0 auto;
+            width:100% !important;
+        }
+
+        a[class='mobile-button']{
+            width:100% !important;
+            padding: 15px !important;
+            border: 0 !important;
+            font-size: 16px !important;
+        }
+
+    }
+</style>
+</head>
+<body style='margin: 0; padding: 0;'>
+
+<!-- HEADER -->
+<table border='0' cellpadding='0' cellspacing='0' width='100%'>
+    <tr>
+        <td bgcolor='#333333'>
+            <!-- HIDDEN PREHEADER TEXT -->
+            <div style='display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;'>
+               
+            </div>
+            <div align='center' style='padding: 0px 15px 0px 15px;'>
+                <table border='0' cellpadding='0' cellspacing='0' width='500' class='wrapper'>
+                    <!-- LOGO/PREHEADER TEXT -->
+                    <tr>
+                        <td style='padding: 20px 0px 30px 0px;' class='logo'>
+                            <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+                                <tr>
+                                    <td bgcolor='#333333' width='100' align='left'>
+                                        <a href='#' target='_blank'>
+                                            <img alt='Logo' src='http://192.169.156.225/hcs/header-habitaciones.jpg' height='180' style='display: block; font-family: Helvetica, Arial, sans-serif; color: #ffffff; font-size: 16px;' border='0'>
+                                        </a>
+                                    </td>
+                                    <td bgcolor='#333333' width='400' align='right' class='mobile-hide'>
+                                        <table border='0' cellpadding='0' cellspacing='0'>
+                                            <tr>
+                                                <td align='right' style='padding: 0 0 5px 0; font-size: 14px; font-family: Arial, sans-serif; color: #666666; text-decoration: none;'></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<!-- ONE COLUMN SECTION -->
+<table border='0' cellpadding='0' cellspacing='0' width='100%'>
+    <tr>
+        <td bgcolor='#ffffff' align='center' style='padding: 70px 15px 70px 15px;' class='section-padding'>
+            <table border='0' cellpadding='0' cellspacing='0' width='500' class='responsive-table'>
+                <tr>
+                    <td>
+                        <!-- HERO IMAGE -->
+                        <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+                            <tr>
+                                <td>
+                                    <!-- COPY -->
+                                    <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+                                        <tr>
+                                            <td align='left' style='font-size: 25px; font-family: Helvetica, Arial, sans-serif; color: #333333; padding-top: 30px;' class='padding-copy'>
+											Hola $x !</td>
+                                        </tr>
+                                        <tr>
+                                            <td align='left' style='padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;' class='padding-copy'>
+											<p>Bienvenido a Black Pass VIP.
+											
+											</p>
+											<P>Datos de Acceso:
+											Login: $w<br>
+											Password: $y <br>
+											</p>
+											<p>Saludos Cordiales</p>
+											</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align='center'>
+                                    <!-- BULLETPROOF BUTTON -->
+                                    <table width='100%' border='0' cellspacing='0' cellpadding='0' class='mobile-button-container'>
+                                        <tr>
+                                            <td align='center' style='padding: 25px 0 0 0;' class='padding-copy'>
+                                                <table border='0' cellspacing='0' cellpadding='0' class='responsive-table'>
+                                                    <tr>
+                                                        <td align='center'><a href='http://app.24hopen.com/ve/blackpass' target='_blank' style='font-size: 16px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #ffffff; text-decoration: none; background-color: #256F9C; border-top: 15px solid #256F9C; border-bottom: 15px solid #256F9C; border-left: 25px solid #256F9C; border-right: 25px solid #256F9C; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; display: inline-block;' class='mobile-button'>Acceso &rarr;</a></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+
+<!-- FOOTER -->
+<table border='0' cellpadding='0' cellspacing='0' width='100%'>
+    <tr>
+        <td bgcolor='#333333' align='center' style='padding: 20px 0px;'>
+            <!-- UNSUBSCRIBE COPY -->
+            <table width='500' border='0' cellspacing='0' cellpadding='0' align='center' class='responsive-table'>
+                <tr>
+                    <td align='center' style='font-size: 12px; line-height: 18px; font-family: Helvetica, Arial, sans-serif; color:#666666;'>
+                        <span class='appleFooter' style='color:#666666;'>Derechos Reservados ITMEDIA</span><br><a class='original-only' style='color: #666666; text-decoration: none;'>Unsubscribe</a><span class='original-only' style='font-family: Arial, sans-serif; font-size: 12px; color: #444444;'>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span><a style='color: #666666; text-decoration: none;'></a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>";
+try {
+    //Server settings
+    //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+    $mail->isSMTP();                                            //Send using SMTP
+    $mail->Host       = 'smtpout.secureserver.net';                     //Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+    $mail->Username   = 'hcs@itolabtech.com';                     //SMTP username
+    $mail->Password   = 'Thomas2284.';                               //SMTP password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+    //Recipients
+    $mail->setFrom('hcs@itolabtech.com', 'Black Pass VIP');
+    $mail->addAddress($w, $x);     //Add a recipient
+   // $mail->addAddress('ellen@example.com');               //Name is optional
+    $mail->addReplyTo('hcs@itolabtech.com', 'Black Pass VIP');
+    //$mail->addCC('cc@example.com');
+    //$mail->addBCC('bcc@example.com');
+
+    //Attachments
+    //$mail->addAttachment('files/temp/'.$z);         //Add attachments
+    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+    //Content
+    $mail->isHTML(true);                                  //Set email format to HTML
+    $mail->Subject = 'Bienvenido a Black Pass VIP';
+    $mail->Body    = $html;
+    //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+    $mail->send();
+    return array(1,"OK");
+} catch (Exception $e) {
+    return array(0,$mail->ErrorInfo);
+}
+}
+
+function enviarmailqr($w,$x,$y,$z){
+
+
+//Create an instance; passing `true` enables exceptions
+$mail = new PHPMailer(true);
+$html = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+	<!--[if gte mso 9]>
+	<xml>
+		<o:OfficeDocumentSettings>
+		<o:AllowPNG/>
+		<o:PixelsPerInch>96</o:PixelsPerInch>
+		</o:OfficeDocumentSettings>
+	</xml>
+	<![endif]-->
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="format-detection" content="date=no" />
+	<meta name="format-detection" content="address=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="x-apple-disable-message-reformatting" />
+    <!--[if !mso]><!-->
+	<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Slabo+27px" rel="stylesheet" />
+    <!--<![endif]-->
+	<title>Black Pass VIP</title>
+	<!--[if gte mso 9]>
+	<style type="text/css" media="all">
+		sup { font-size: 100% !important; }
+	</style>
+	<![endif]-->
+	
+
+	<style type="text/css" media="screen">
+		/* Linked Styles */
+		body { background:#292929; padding:0 !important; margin:0 !important; display:block !important; -webkit-text-size-adjust:none; background-image:url(images/t3_pattern.jpg); background-repeat:no-repeat repeat-y; background-position:0 0 }
+		a { color:#ffffff; text-decoration:none }
+		p { padding:0 !important; margin:0 !important } 
+		img { -ms-interpolation-mode: bicubic; /* Allow smoother rendering of resized image in Internet Explorer */ }
+		.mcnPreviewText { display: none !important; }
+
+				
+		/* Mobile styles */
+		@media only screen and (max-device-width: 480px), only screen and (max-width: 480px) {
+			.mobile-shell { width: 100% !important; min-width: 100% !important; }
+			.text-header,
+			.m-center { text-align: center !important; }
+			.holder { padding: 0 10px !important; }
+			.text-nav { font-size: 10px !important; }
+			.center { margin: 0 auto !important; }
+
+			.td { width: 100% !important; min-width: 100% !important; }
+
+			.m-br-15 { height: 15px !important; }
+			.bg { height: auto !important; } 
+			.h0 { height: 0px !important; }
+
+			.m-td,
+			.m-hide { display: none !important; width: 0 !important; height: 0 !important; font-size: 0 !important; line-height: 0 !important; min-height: 0 !important; }
+			.m-block { display: block !important; }
+
+			.p30-15 { padding: 30px 15px !important; }
+			.p15-15 { padding: 15px 15px !important; }
+			.p30-0 { padding: 30px 0px !important; }
+
+			.fluid-img img { width: 100% !important; max-width: 100% !important; height: auto !important; }
+
+			.column,
+			.column-top,
+			.column-dir,
+			.column-empty,
+			.column-empty2,
+			.column-empty3,
+			.column-bottom,
+			.column-dir-top,
+			.column-dir-bottom { float: left !important; width: 100% !important; display: block !important; }
+
+			.column-empty { padding-bottom: 10px !important; }
+			.column-empty2 { padding-bottom: 25px !important; }
+			.column-empty3 { padding-bottom: 45px !important; }
+
+			.content-spacing { width: 15px !important; }
+			.content-spacing2 { width: 25px !important; }
+		}
+	</style>
+</head>
+<body class="body" style="background:#292929; padding:0 !important; margin:0 !important; display:block !important; -webkit-text-size-adjust:none; background-image:url(images/t3_pattern.jpg); background-repeat:no-repeat repeat-y; background-position:0 0;">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-image: url(http://192.169.156.225/hcs/images/t3_pattern.jpg); background-repeat: no-repeat repeat-y; background-position: 0 0;" align="center"> 
+		<tr>
+			<td background="images/t3_pattern.jpg" align="center" valign="top" style="background-image: url(http://192.169.156.225/hcs/images/t3_pattern.jpg); background-repeat: no-repeat repeat-y; background-position: 0 0;"> 
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td align="center" style="padding: 60px 0px;">
+							<table width="650" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
+								<tr>
+									<td class="td" style="width:650px; min-width:650px; font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+										<!-- Header -->
+										<table width="100%" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left;"><img src="http://192.169.156.225/hcs/images/section_black_top.png" width="650" height="24" editable="true" border="0" alt="" /></td>
+											</tr>
+											<tr>
+												<td class="p30-15" bgcolor="#000000" style="padding: 20px 30px;">
+													<table width="100%" border="0" cellspacing="0" cellpadding="0">
+														<tr>
+															
+															<th class="column-empty" width="1" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;"></th>
+															
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+										<!-- END Header -->
+										
+										<repeater>
+											<!-- Hero Image -->
+											<layout label="Hero Image">
+												<table width="100%" border="0" cellspacing="0" cellpadding="0">
+													<tr>
+														<td class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left;"><img src="http://192.169.156.225/hcs/header-habitaciones.jpg" width="650" height="200" editable="true" border="0" alt="" /></td>
+													</tr>
+												</table>
+											</layout>
+											<!-- END Hero Image -->
+
+											<!-- Article 1 -->
+											
+										<!-- Footer -->
+										<table width="100%" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left;"><img src="http://192.169.156.225/hcs/images/section_black_top.png" width="650" height="24" editable="true" border="0" alt="" /></td>
+											</tr>
+											<tr>
+												<td style="padding: 70px 40px 40px 40px;" class="p30-15" bgcolor="#000000">
+													<table border="0" cellspacing="0" cellpadding="0">
+
+														
+														<tr>
+															<td class="fluid-img" bgcolor="#262626" style="font-size:0pt; line-height:0pt; text-align:left;"><img src="http://192.169.156.225/hcs/images/t3_separator2.jpg" width="571" height="2" border="0" alt="" /></td>
+														</tr>
+														<tr>
+															<td class="p30-0" style="padding: 40px 0px 20px 0px;"></td>
+														</tr>
+														<tr>
+															<td align="center" style="padding-bottom: 30px;">
+																<table border="0" cellspacing="0" cellpadding="0">
+																	<tr>
+																		<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="#" target="_blank"><img src="http://192.169.156.225/hcs/images/t3_ico_facebook.jpg" width="34" height="34" editable="true" border="0" alt="" /></a></td>
+																		<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="#" target="_blank"><img src="http://192.169.156.225/hcs/images/t3_ico_twitter.jpg" width="34" height="34" editable="true" border="0" alt="" /></a></td>
+																		<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="#" target="_blank"><img src="http://192.169.156.225/hcs/images/t3_ico_instagram.jpg" width="34" height="34" editable="true" border="0" alt="" /></a></td>
+																		<td class="img" width="34" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="#" target="_blank"><img src="http://192.169.156.225/hcs/images/t3_ico_linkedin.jpg" width="34" height="34" editable="true" border="0" alt="" /></a></td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+														
+												</td>
+											</tr>
+											<tr>
+												<td class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left;"><img src="http://192.169.156.225/hcs/images/container_bottom.png" width="650" height="20" editable="true" border="0" alt="" /></td>
+											</tr>
+											<tr>
+												<td class="text-footer p30-15" style="padding: 20px 40px; color:#777777; font-family:"Slabo 27px", Georgia, serif; font-size:15px; line-height:26px; text-align:center; text-transform:uppercase;"><unsubscribe class="link4" style="color:#666666; text-decoration:none;"><span class="link4-u" style="color:#666666; text-decoration:underline;">Unsubscribe</span> from this mailing list.</unsubscribe> </td>
+											</tr>
+										</table>
+										<!-- END Footer -->
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>';
+try {
+    //Server settings
+    //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+    $mail->isSMTP();                                            //Send using SMTP
+    $mail->Host       = 'smtpout.secureserver.net';                     //Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+    $mail->Username   = 'hcs@itolabtech.com';                     //SMTP username
+    $mail->Password   = 'Thomas2284.';                               //SMTP password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+    //Recipients
+    $mail->setFrom('hcs@itolabtech.com', 'Black Pass VIP');
+    $mail->addAddress($w, $x);     //Add a recipient
+   // $mail->addAddress('ellen@example.com');               //Name is optional
+    $mail->addReplyTo('hcs@itolabtech.com', 'Black Pass VIP');
+    //$mail->addCC('cc@example.com');
+    //$mail->addBCC('bcc@example.com');
+
+    //Attachments
+    $mail->addAttachment('../files/temp/'.$z);         //Add attachments
+    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+    //Content
+    $mail->isHTML(true);                                  //Set email format to HTML
+    $mail->Subject = 'Datos Membresia Black Pass VIP';
+    $mail->Body    = $html;
+    //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+    $mail->send();
+    return array(1,"OK");
+} catch (Exception $e) {
+    return array(0,$mail->ErrorInfo);
+}
+}

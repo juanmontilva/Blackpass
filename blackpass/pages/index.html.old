@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+       --> <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <!-- <link rel="stylesheet" href="css/index.css">
+		    Fonts and icons     -->
+	  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+	  <!-- Nucleo Icons -->
+	  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+	  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+	  <!-- Font Awesome Icons -->
+	  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+	  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+	  <!-- CSS Files -->
+	  <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
+
+        <title>24hOpen</title>
+    </head>
+    <body>
+        <!--<div class="app">
+            <div id="deviceready" class="blink"></div>
+        </div>--> 
+		  <div class="container position-sticky z-index-sticky top-0">
+			<div class="row" >
+			  <div class="col-12" >
+				<!-- Navbar -->
+				<nav   class="navbar navbar-expand-lg bg-white top-0 z-index-3 shadow position-absolute my-3 py-4 start-0 end-0 mx-4">
+				  <div  class="container-fluid">
+					 <div class="row">
+						<div class="col-3"></div>
+						  <div class="col-6">
+						  <img width="90%" src="../assets/img/logos/loogo24.png">
+						  </div>
+						</div>
+				  </div>
+				</nav>
+				<!-- End Navbar -->
+			  </div>
+			</div>
+		  </div>
+		<div  id="deviceready"  class="d-flex no-block justify-content-center align-items-center position-relative"
+            style="height:800px;background:url(../assets/img/auth-bg.jpg) no-repeat -200px -250px ">
+			<div class="container-fluid py-4">
+				<div class="row">
+					<div class="col-12 mt-4">
+					<label></label>
+                    <div class="text-center">
+                      <button onclick="load_signin();" style="height:80px;" type="button" class="btn bg-gradient-primary w-40 mt-4 mb-4">Personas</button>
+                    </div>
+                    <label></label>
+                    <div class="text-center">
+                      <button type="button" style="height:80px;" class="btn bg-gradient-dark w-40 mt-4 mb-4">Comercios</button>
+                    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+        <script src="js/cordova.js"></script>
+        <script src="js/index.js"></script>
+		<script src="../assets/js/core/popper.min.js"></script>
+		<script src="../assets/js/core/jquery/jquery-3.2.1.min.js"></script>
+		<script src="../assets/js/core/jquery-ui/jquery-ui.min.js"></script>
+		<script src="../assets/js/core/bootstrap.min.js"></script>
+		<script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+		<script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+		<script>
+		  function load_signin(){
+		  window.location.href = "sign-in.html";
+		  }
+			var win = navigator.platform.indexOf('Win') > -1;
+			if (win && document.querySelector('#sidenav-scrollbar')) {
+			  var options = {
+				damping: '0.5'
+			  }
+			  Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+			}
+			
+		  </script>
+		  <!-- Github buttons -->
+		<script async defer src="https://buttons.github.io/buttons.js"></script>
+		<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+		<script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+    </body>
+</html>

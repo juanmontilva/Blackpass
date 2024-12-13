@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <title>
+    Black Pass VIP
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="../assets/css/modal.css" rel="stylesheet" />
+  <link href="../assets/js/core/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.9" rel="stylesheet" />
+</head>
+
+<body style="background:#000000;">
+  <div class="container">
+    <div class="row" >
+      <div class="col-12" >
+        <!-- Navbar -->
+        <nav   class="navbar navbar-expand-lg  top-0 z-index-3 shadow position-absolute my-3 py-4 start-0 end-0 mx-4">
+          <div  class="container-fluid">
+             <div class="row">
+				<div class="col-3"></div>
+				  <div class="col-6">
+				  <img  src="../assets/img/logos/logo.png">
+				  </div>
+				</div>
+          </div>
+        </nav>
+        <!-- End Navbar -->
+      </div>
+    </div>
+  </div>
+  <main class="main-content  mt-0">
+
+    <section>
+      <div class="page-header min-vh-75">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
+              <div class="card card-plain mt-8">
+                <div class="card-header pb-0 text-left bg-transparent">
+				<br>
+                  <h3 style="color:#ffffff;" class="font-weight-bolder">Bienvenido</h3>
+                </div>
+                <div class="card-body">
+                  <form role="form">
+                    <label style="color:#ffffff;">Usuario</label>
+                    <div class="mb-3">
+                      <input type="text" id="puser" class="form-control" placeholder="Usuario" aria-label="Email" aria-describedby="email-addon">
+                    </div>
+                    <label style="color:#ffffff;">Contraseña</label>
+                    <div class="mb-3">
+                      <div class="col-md-12">
+						
+						<div class="ms-md-auto pe-md-3 d-flex align-items-center">
+						<div class="input-group">
+						  
+						  <input type="password" id="passw" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
+						  <button type ="button" id="show_password"  class="input-group-text text-body"><span class="fa fa-eye-slash icon" onclick="mostrarPassword()" aria-hidden="true"></span></button>
+						</div>
+					  </div>
+					</div>
+					
+					
+					</div>
+                    <div class="form-check form-switch">
+                      <input style="color:#000000;" class="form-check-input" type="checkbox" id="rememberMe" checked="">
+                      <label style="color:#ffffff;" class="form-check-label" for="rememberMe">Recuerdame</label>
+                    </div>
+                    <div class="text-center">
+                      <button type="button" id="btnsign" onclick="acceso()" class="btn bg-gradient-warning w-100 mt-4 mb-0">Ingresar</button>
+                    </div>
+                  </form>
+                </div>
+                <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                  <p class="mb-4 text-sm mx-auto">
+                    No tienes una cuenta?
+                    <a href="sign-up.php" class="text-info text-gradient font-weight-bold">Registrarte</a>
+                  </p>
+				  <p class="mb-4 text-sm mx-auto">
+                    
+                    <a href="#" onclick="passw();" class="text-info text-gradient font-weight-bold">Restablecer Contraseña!</a>
+                  </p>
+                </div>
+				
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
+                <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url('../assets/img/curved-images/curved6.jpg')"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
+  <footer class="footer py-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-8 mx-auto text-center mt-1">
+          <p  style="color:#ffffff;"class="mb-0">
+            Copyright © <script>
+              document.write(new Date().getFullYear())
+            </script>  <a href="https://www.itmedia.com.ve/" class="font-weight-bold" >ITMEDIA.</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+<div class="modal" id="form_passw_modal_add" tabindex="-1" role="dialog" aria-labelledby="form_passw_modal_add" aria-hidden="true">
+  <div class="modal-dialog modal-xs">
+    <div class="modal-content">
+      <div class="modal-header">
+	     <button type="button" class="close" onclick="cerrar_tax4();" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="form_tf_modal"><i class="fa fa-globe"></i> Restablecer Contraseña</h4>
+      </div>
+      <div class="modal-body">
+		<div class="box-content no-padding">
+		<div id="load_r" style="display:none;">
+				<img src="../assets/img/loading.gif">
+	   </div>
+				<div style="display:none;" id="div_msg"></div>
+				<form id="form_pass_cambio" name ="form_pass_cambio" method="post"  class="form-horizontal">
+					<fieldset>
+						<legend>Restablecer Contraseña</legend>
+						<div class="form-group" id="titular">
+							<label class="col-sm-3 control-label">Numero Tarjeta</label>
+							<div class="col-sm-5">
+								<input type="text" maxlength="16" placeholder = "XXXXXXXXXXXX" class="form-control" name="tarjeta" id="tarjeta" data-toggle="tooltip" data-placement="bottom" title="Tarjeta"> 
+							</div>
+						</div>
+						<div id="loading" style="margin-top:80px;display:none;margin-left:40%"><img src='img/devoops_getdata.gif'></div>
+						<div style="display:none;" id="div_msg"></div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">E-mail</label>
+							<div class="col-sm-5">
+								<input type="email"  class="form-control" name="correo" id="correo" data-toggle="tooltip" data-placement="bottom" title="E-mail"> 
+							</div>
+						</div>
+						
+						<br>
+					</fieldset>
+					<div class="form-group">
+						<div class="col-sm-9 col-sm-offset-3">
+						<input type="hidden" id="client" name="client" value ="<?php echo cadena();?>">
+						<input type="hidden" id="codigo" name="codigo" value ="">
+						<input type="hidden" id="ncliente" name="ncliente" value ="">
+						<button type="button" id="btn_save2" class="btn btn-lg btn-dark btn-label-right" onclick="save_pass_res();">Restablecer Contraseña</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+  <!-- -------- END FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
+  <!--   Core JS Files   -->
+  <script src="../assets/js/core/popper.min.js"></script>
+   <script src="../assets/js/core/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../assets/js/core/jquery-ui/jquery-ui.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="../assets/js/funciones.js"></script>
+    <script src="../assets/js/modal.js"></script>
+  <script>
+  var uuid = 123211; 
+  function acceso(uuid){
+  
+	validar_acceso(uuid);
+  }
+  function mostrarPassword(){
+		var cambio = document.getElementById("passw");
+		if(cambio.type == "password"){
+			cambio.type = "text";
+			$('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+		}else{
+			cambio.type = "password";
+			$('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+		}
+	} 
+	$(document).ready(function () {
+	//CheckBox mostrar contraseña
+	$('#ShowPassword').click(function () {
+		$('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
+	});
+});
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+</body>
+
+</html>

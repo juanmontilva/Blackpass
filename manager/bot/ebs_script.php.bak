@@ -1,0 +1,323 @@
+<?php
+include("funciones/funciones.php");
+include('funciones/api_ws.php');
+	
+function consulta_welcome($a,$b,$c,$d,$e){
+include("funciones/conexion.php");
+
+	 $mensaje = $banner = "";
+	 $aux = 0;
+	$sql = mysqli_query($con,"SELECT * FROM apps_clientes where telefono = '".$a."' ");
+	$sql2 = mysqli_query($con, "SELECT * FROM apps_welcome  WHERE 
+						  chat_id = '".$b."' and fecha = '".$c."'");
+	if(mysqli_num_rows($sql) == 0 ){  // VALIDAMOS SI EL CLIENTE EXISTE
+		if(mysqli_num_rows($sql2) == 0){ // MENSAJE DE BIENVENIDA
+				$mensaje = "*Bienvenido a EBS /Welcome to EBS* \n\n".
+				"*Envia / Send*:\n\n".
+	             "*1*  👉🏻 Español\n".
+				 "*2*  👉🏻 English";
+				 $aux = 1;
+				 $banner = "1.png"; 
+		}else{ //SINO EXISTE PERO YA SE DIO BIENVENIDA
+			$row = mysqli_fetch_assoc($sql2);
+			if($row['status']==1){
+				$respuesta = paso1($a,$b,$e);
+				return array("b",$respuesta);
+			}else if($row['status']==2){
+				$respuesta = paso2($a,$b,$e);
+				return array("c",$respuesta);
+			}else if($row['status']==3){
+				$respuesta = paso3($a,$b,$e);
+				return array("d",$respuesta);
+			}
+			
+		}
+				
+	}else{
+		
+		$row2 = mysqli_fetch_assoc($sql);
+		if(mysqli_num_rows($sql2) == 0){
+			 if($row2['lenguaje']==1){
+				 $banner = "1.png"; 
+				 $nombre = $row2['nombres'];
+				 $mensaje = saludo()." *$nombre* \n\n".
+							"Bienvenido a *EBS*\n\n".
+							"¿Como podemos ayudarte el dia de hoy?\n\n".
+							"Escribe el Numero de la opcion a realizar:\n\n".
+							"*1*  👉🏻 Hacer una Cita\n".
+							"*2*  👉🏻 Solicitar Información\n".
+							"*3*  👉🏻 Descargar Tax".
+							"Escribe *INICIO* para repetir el mensaje";
+			 }else if($row2['lenguaje']==2){
+				 $nombre = $row2['nombres'];
+				 $banner = "2.png"; 
+				 $mensaje = saludo2()." *$nombre* \n\n".
+							"Welcome to *EBS*\n\n".
+							"How can we help you today?\n\n".
+							"Write the Number of the option to perform:\n\n".
+							"*1*  👉🏻 Make an appointment\n".
+							"*2*  👉🏻 Ask for information\n".
+							"*3*  👉🏻 Download Tax".
+							"Type *HOME* to repeat the message";
+			 }
+			 $aux = 2;
+		}else{
+			$row = mysqli_fetch_assoc($sql2);
+			if($row['status']==0){
+				$mensaje = "";
+				$respuesta = opc_cita($a,$b,$e,$row2['lenguaje']);
+				return array("e",$respuesta,$row['id']);
+			}else if($row['status']==2){ // SELECCION DE SERVICIO Y SOLICITUD DE FECHA
+				$respuesta = validar_s($e);
+				if($respuesta==0){
+					 if($row2['lenguaje']==1){
+					 $mensaje = "📋 *CODIGO* incorrecto 🚫  \n\n".
+									"Por favor ingresa el *CODIGO* del servicio: \n\n".
+									"_Ejemplo: *BO*_";
+					 }else  if($row2['lenguaje']==2){
+						 $mensaje = "📋 Incorrect *CODE* 🚫  \n\n".
+										"Please enter the *CODE* of the service: \n\n".
+										"_Example: *BO*_";
+					 }
+				}else{
+					if($row2['lenguaje']==1){
+						$mensaje = "📅 Indica la fecha que deseas ser atendido\n".
+									"⚠️ El formato de fecha debe ser *MM/DD/AAAA* ⚠️ ";
+					}else if($row2['lenguaje']==2){
+						$mensaje = "📅 Indicate the date you want to be attended\n".
+									"⚠️ The date format must be *MM/DD/AAAA* ⚠️ ";
+					}
+					
+				}
+				
+				return array("f",$mensaje,$row['id']);
+			}
+		}
+	}
+	return array("a",$mensaje,$aux, $banner);
+}
+function paso1($a1,$b1,$c1){
+	$mensaje = "";
+	
+		if($c1==1){
+			$mensaje = "Por favor marca la siguiente opción;\n".
+					   "*1*  👉🏻   Persona 🙋🏻‍♂️\n".
+                       "*2*  👉🏻   Negocio 🏭\n";					   
+		}else if($c1==2){
+			$mensaje = "Please check the next option;\n".
+					   "*1*  👉🏻   Person 🙋🏻‍♂️\n".
+                       "*2*  👉🏻   Business 🏭\n";					   
+		}
+		return ($mensaje);
+}
+function paso2($a1,$b1,$c1){
+	include("funciones/conexion.php");
+	$mensaje = "";
+	$sql_1 = mysqli_query($con,"SELECT * from aux_clientes where chatid = '$b1' ");
+	if(mysqli_num_rows($sql_1)!=0){
+		$row = mysqli_fetch_assoc($sql_1);
+		if($row['idioma']==1){
+			$mensaje = "🙋🏻‍♂️ *Por favor ingresa tu nombre*:\n";					   
+		}else if($c1==2){
+			$mensaje = "🙋🏻‍♂️ *Please enter your name*:\n";					   
+		}
+	}
+		
+		return ($mensaje);
+}
+function paso3($a1,$b1,$c1){
+	include("funciones/conexion.php");
+
+	$mensaje = "";
+	$sql_1 = mysqli_query($con,"SELECT * from aux_clientes where chatid = '$b1' ");
+	if(mysqli_num_rows($sql_1)!=0){
+		$row = mysqli_fetch_assoc($sql_1);
+			if($row['idioma']==1){
+				 $banner = "1.png"; 
+				 $nombre = $row['nombre'];
+				 $mensaje = saludo()." *$nombre* \n\n".
+							"Bienvenido a *EBS*\n\n".
+							"¿Como podemos ayudarte el dia de hoy?\n\n".
+							"Escribe el Numero de la opcion a realizar:\n\n".
+							"*1*  👉🏻 Hacer una Cita\n".
+							"*2*  👉🏻 Solicitar Información\n";
+			 }else if($c1==2){
+				 $nombre = $row['nombre'];
+				 $banner = "2.png"; 
+				 $mensaje = saludo2()." *$nombre* \n\n".
+							"Welcome to *EBS*\n\n".
+							"How can we help you today?\n\n".
+							"Write the Number of the option to perform:\n\n".
+							"*1*  👉🏻 Make an appointment\n".
+							"*2*  👉🏻 Ask for information\n";
+			 }
+		
+		
+	}
+		
+		return ($mensaje);
+}
+function opc_cita($a2,$b2,$c2,$d2){
+	if($c2==1){
+		$r = consulta_s($b2,$c2,$d2);
+		return $r;
+	}
+}
+function consulta_s($x,$y,$z){
+include("funciones/conexion.php");
+$servicios = $titulo = "" ;
+	
+			 $sql_s = mysqli_query($con,"SELECT m.* FROM apps_marcas_x_pais mp, apps_marcas m 
+								WHERE m.id_marca = mp.id_marca ");
+				
+			 if(mysqli_num_rows($sql_s)!=0){
+				 $row_lo = mysqli_fetch_assoc($sql_lo);
+				 
+				 while($row=mysqli_fetch_assoc($sql_s)){
+					 $sql = mysqli_query($con,"SELECT * FROM apps_servicios_d 
+							where id_marca = '".$row['id_marca']."' and status = 1");
+					//while($row2=mysqli_fetch_assoc($sql)){
+						$servicios .= "*".$row['identificador']."*   👉🏻    ".$row['marca']."\n";
+					 //}
+					 if($z==1){
+						 $titulo = "📋 _Escribe el *CODIGO* del servicio_: \n\n".
+									"*COD*         *SERVICIO*\n\n";
+					 }else if($z==2){
+						$titulo = "📋 _Write the *CODE* of the service_: \n\n".
+									"*COD*         *SERVICE*\n\n";
+					 }
+					 
+					 $titulo = $titulo."".$servicios."\n";
+				 }
+			 }
+			 return ($titulo);
+							
+}
+function validar_s($x){
+	include("funciones/conexion.php");
+
+			 $sql_s = mysqli_query($con,"SELECT m.* FROM apps_marcas m 
+								WHERE m.identificador = '".$x."' ");
+			 return mysqli_num_rows($sql_s);
+}
+function ver_agenda($x,$y){
+		
+include("funciones/conexion.php");
+	$hoy_s = date("d/m/Y");
+	//$x =  date("d/m/Y", strtotime($x));
+	//$fechax = explode("/",$x);
+	$fechax = explode("/",$x);
+	$mesx = 0;
+	/*switch(strtoupper($fechax[0])){
+								case 'JAN' : $mesx = "01";
+				break;
+				case 'ENE' : $mesx = "01";
+				break;
+				case 'FEB' : $mesx = "02";
+				break;
+				case 'MAR' : $mesx = "03";
+				break;
+				case 'APR' : $mesx = "04";
+				break;
+				case 'ABR' : $mesx = "04";
+				break;
+				case 'MAY' : $mesx = "05";
+				break;
+				case 'JUN' : $mesx = "06";
+				break;
+				case 'JUL' : $mesx = "07";
+				break;
+				case 'AUG' : $mesx = "08";
+				break;
+				case 'AGO' : $mesx = "08";
+				break;
+				case 'SEP' : $mesx = "09";
+				break;
+				case 'OCT' : $mesx = "10";
+				break;
+				case 'NOV' : $mesx = "11";
+				break;
+				case 'DEC' : $mesx = "12";
+				break;
+				case 'DIC' : $mesx = "12";
+				break;
+				
+			}*/
+	/*if($mesx=0){
+		 return array(0,$dias_t);
+	}*/
+	$x = $fechax[0]."/".$fechax[1]."/".$fechax[2];
+	//$x = $fechax[1]."/".$mesx."/".$fechax[2];
+	$enva = $x." a ".$hoy_s;
+	//sendMessage($y,$enva);
+	//$valida = var_dump(validateDate($x, 'd/m/Y'));
+	$validar = (validateDate($x, 'd/m/Y') ? '1' : '0'); 
+	if($validar == 1){
+		$fecha_actual = date("Y-m-d");
+		$fecha_e = explode("/",$x);
+		$fecha_entrada = $fecha_e[2]."-".$fecha_e[1]."-".$fecha_e[0];
+		
+		if(saber_dia($fecha_entrada)=="Domingo"){
+			 return array(11,$dias_t);
+		}else{
+		//$dias_t = dias_transcurridos($fecha_entrada,$fecha_actual);
+		$fecha_fin = date("d-m-Y",strtotime($fecha_actual."+ 30 days"));
+		$dias_t = verifica_rango($fecha_actual,$fecha_fin,$fecha_entrada);
+		 
+		//sendMessage($y,$dias_t);
+		if($dias_t == 0){
+				return array(14,$dias_t);
+		}else if ($dias_t==30){
+			return array(10,$dias_t);
+		}
+		else if($dias_t==1){
+			$f = explode("/",$x);
+			$f = $f[2]."-".$f[1]."-".$f[0]." 00:00:00";
+			$update = mysqli_query($con, "UPDATE apps_temp SET  status = 4, fecha_i = '".$f."' 
+			WHERE chatID = '".$y."'") or die(mysqli_error());
+			
+			$sql = mysqli_query($con,"SELECT * FROM apps_temp where chatID = '$y'");
+			if(mysqli_num_rows($sql)!=0){
+				
+				$row = mysqli_fetch_assoc($sql);
+				$sql2 = mysqli_query($con,"SELECT localidad FROM aux_local a, apps_welcome w
+							where w.id = a.idw and a.ref = '".$row['local']."'
+							and w.chat_id = '$y' ");
+				
+				$qdia = saber_dia($fecha_entrada);
+				$sqlv_d = mysqli_query($con,"select h.* from apps_horarios h,aux_local a
+							where a.localidad = h.id_s and
+							a.ref = '".$row['local']."' and dia = '$qdia' ");
+							$xy = "select h.* from apps_horarios h,aux_local a
+							where a.localidad = h.id_s and
+							a.ref = '".$row['local']."' and dia = '$qdia' ";
+				if(mysqli_num_rows($sqlv_d)==0){
+					//sendMessage($y,$xy);
+					 return array(11,$dias_t);
+				}else if(mysqli_num_rows($sql2)!=0){
+					
+					$row2 = mysqli_fetch_assoc($sql2);
+					$sql3 = mysqli_query($con,"select * from apps_servicios_d where cod = '".$row['serv']."'");
+					if(mysqli_num_rows($sql3)!=0){
+					$row3 = mysqli_fetch_assoc($sql3);
+					$sql4 = mysqli_query($con,"SELECT idp FROM aux_prof a, apps_welcome w
+							where w.id = a.idw and a.idp = '".$row['prof']."'
+							and w.chat_id = '$y' ");
+							
+						if(mysqli_num_rows($sql4)!=0){
+							$row4 = mysqli_fetch_assoc($sql4);
+							
+							$respuesta = horas_d($f,$y,$row2['localidad'],$row3['idh'],$row4['idp']);
+							return array(12,$respuesta);
+						}
+					}
+				}
+				
+			}
+		}
+		}
+	}else{
+		return array(0,$dias_t);
+	}
+}
+?>

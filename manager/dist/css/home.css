@@ -1,0 +1,23 @@
+
+body{ font-size:18px; color:#FFF; }
+a { color:#FFF}
+.classname {
+float:left;
+ }
+ .classname2 {
+
+float:left;
+ 
+ }
+ .pics { height: 320px; width: 98%;overflow: hidden }
+.pics img { height: 320px; width: 98%; padding: 15px; border: 1px solid #ccc; background-color: #eee;
+ }
+.pics img {
+	-moz-border-radius: 10px; -webkit-border-radius: 10px;
+}
+
+/* =Your Generated css 
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+.classname{border:dashed 0px #ccc;-moz-border-radius: 12px;-webkit-border-radius: 12px;border-radius: 12px;}
+/* End of Your Generated css 
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/

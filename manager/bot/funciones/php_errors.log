@@ -1,0 +1,15 @@
+[12-Dec-2021 23:33:36 America/New_York] PHP Notice:  Undefined property: stdClass::$sent in /var/www/html/us/ebs/ebs.php on line 51
+[12-Dec-2021 23:57:03 America/New_York] PHP Notice:  Undefined variable: encriptar in /var/www/html/us/ebs/ebs_script.php on line 121
+[12-Dec-2021 23:57:03 America/New_York] PHP Fatal error:  Uncaught Error: Function name must be a string in /var/www/html/us/ebs/ebs_script.php:121
+Stack trace:
+#0 /var/www/html/us/ebs/ebs.php(47): consulta_welcome('19546683864', '19546683864@c.u...', '2021-12-12', 'Mi Phone', '2208')
+#1 {main}
+  thrown in /var/www/html/us/ebs/ebs_script.php on line 121
+[12-Dec-2021 23:59:06 America/New_York] PHP Notice:  Undefined variable: encriptar in /var/www/html/us/ebs/ebs_script.php on line 121
+[12-Dec-2021 23:59:06 America/New_York] PHP Fatal error:  Uncaught Error: Function name must be a string in /var/www/html/us/ebs/ebs_script.php:121
+Stack trace:
+#0 /var/www/html/us/ebs/ebs.php(47): consulta_welcome('19546683864', '19546683864@c.u...', '2021-12-12', 'Mi Phone', '2208')
+#1 {main}
+  thrown in /var/www/html/us/ebs/ebs_script.php on line 121
+[13-Dec-2021 01:00:30 America/New_York] PHP Notice:  Undefined property: stdClass::$sent in /var/www/html/us/ebs/ebs.php on line 269
+[13-Dec-2021 01:01:31 America/New_York] PHP Notice:  Undefined property: stdClass::$sent in /var/www/html/us/ebs/ebs.php on line 269

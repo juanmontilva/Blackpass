@@ -1,0 +1,7 @@
+
+ .pics { overflow: hidden }
+.pics img { padding: 15px; border: 1px solid #ccc; background-color: #eee;
+ }
+.pics img {
+	-moz-border-radius: 10px; -webkit-border-radius: 10px;
+}
